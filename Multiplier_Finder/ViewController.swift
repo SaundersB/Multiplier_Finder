@@ -13,8 +13,6 @@ class ViewController: UIViewController {
     var back: UIImageView!
     var front: UIImageView!
     var showingBack = false
-    var first_digits: Array = [1,2,3,4,5,6,7,8,9]
-    var second_digits: Array = [1,2,3,4,5,6,7,8,9]
     var textView: UILabel!
     var current_factor: Int!
     var next_factor: Int!
@@ -40,7 +38,6 @@ class ViewController: UIViewController {
         cardView.isUserInteractionEnabled = true
         
         cardView.addSubview(back)
-        
         
         let message = String(current_factor) + " X " + String(next_factor)
         superimposeText(card_information: String(message))
@@ -93,11 +90,18 @@ class ViewController: UIViewController {
     func superimposeText(card_information: String) {
         print("Superimposing Text onto UIView")
         
-        self.textView = UILabel(frame: CGRect(x: 20, y: 20, width: 100, height: 50))
+        self.textView = UILabel(frame: CGRect(x: 20, y: 20, width: 100, height: 100))
         self.textView.text = card_information
         self.textView.numberOfLines = 1
-        self.textView.font = UIFont.systemFont(ofSize: 25)
-        self.textView.center = self.front.center
+
+        self.textView.font = UIFont.systemFont(ofSize: 50)
+        self.textView.adjustsFontSizeToFitWidth = true
+
+        if(showingBack){
+            self.textView.center = self.back.center
+        } else {
+            self.textView.center = self.front.center
+        }
         cardView.addSubview(self.textView)
 
     }

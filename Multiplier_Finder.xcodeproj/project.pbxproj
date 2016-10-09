@@ -197,17 +197,20 @@
 					8B0F6E3A1DA9D64D006851AA = {
 						CreatedOnToolsVersion = 8.0;
 						DevelopmentTeam = 4A9CJV2EBC;
+						LastSwiftMigration = 0800;
 						ProvisioningStyle = Automatic;
 					};
 					8B0F6E511DA9D64D006851AA = {
 						CreatedOnToolsVersion = 8.0;
 						DevelopmentTeam = 4A9CJV2EBC;
+						LastSwiftMigration = 0800;
 						ProvisioningStyle = Automatic;
 						TestTargetID = 8B0F6E3A1DA9D64D006851AA;
 					};
 					8B0F6E5C1DA9D64D006851AA = {
 						CreatedOnToolsVersion = 8.0;
 						DevelopmentTeam = 4A9CJV2EBC;
+						LastSwiftMigration = 0800;
 						ProvisioningStyle = Automatic;
 						TestTargetID = 8B0F6E3A1DA9D64D006851AA;
 					};

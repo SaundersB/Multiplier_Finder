@@ -9,10 +9,23 @@
 import UIKit
 
 class ViewController: UIViewController {
+    
+    var cardView: UIView!
+    var back: UIImageView!
+    var front: UIImageView!
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+        
+        
+        front = UIImageView(image: UIImage(named: "front.jpg"))
+        back = UIImageView(image: UIImage(named: "back.jpg"))
+        let rect = CGRect(x: 20, y: 20, width: (back.image?.size.width)!, height: (back.image?.size.height)!)
+        cardView = UIView(frame: rect)
+        cardView.addSubview(back) 
+        view.addSubview(cardView)
     }
 
     override func didReceiveMemoryWarning() {

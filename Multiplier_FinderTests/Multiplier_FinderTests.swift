@@ -7,7 +7,6 @@
 //
 
 import XCTest
-@testable import Multiplier_Finder
 
 class Multiplier_FinderTests: XCTestCase {
     

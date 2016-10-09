@@ -13,17 +13,16 @@ class ViewController: UIViewController {
     var cardView: UIView!
     var back: UIImageView!
     var front: UIImageView!
-    
+    var showingBack = true
+
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
-        
         
         front = UIImageView(image: UIImage(named: "front.jpg"))
         back = UIImageView(image: UIImage(named: "back.jpg"))
         
-        let singleTap = UITapGestureRecognizer(target: self, action: Selector("tapped"))
+        let singleTap = UITapGestureRecognizer(target: self, action: #selector(ViewController.tapped))
         singleTap.numberOfTapsRequired = 1
         
         
@@ -46,6 +45,14 @@ class ViewController: UIViewController {
     
     func tapped() {
         print("tapped")
+        
+        if (showingBack) {
+            UIView.transition(from: back, to: front, duration: 1, options: UIViewAnimationOptions.transitionFlipFromRight, completion: nil)
+            showingBack = false
+        } else {
+            UIView.transition(from: front, to: back, duration: 1, options: UIViewAnimationOptions.transitionFlipFromLeft, completion: nil)
+            showingBack = true
+        }
     }
 
 

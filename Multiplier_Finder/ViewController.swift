@@ -12,14 +12,19 @@ class ViewController: UIViewController {
     var cardView: UIView!
     var back: UIImageView!
     var front: UIImageView!
-    var showingBack = true
-    var first_digits: Array = [0,1,2,3,4,5,6,7,8,9]
-    var second_digits: Array = [0,1,2,3,4,5,6,7,8,9]
+    var showingBack = false
+    var first_digits: Array = [1,2,3,4,5,6,7,8,9]
+    var second_digits: Array = [1,2,3,4,5,6,7,8,9]
     var textView: UILabel!
+    var current_factor: Int!
+    var next_factor: Int!
 
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        current_factor = 1
+        next_factor = 1
         
         front = UIImageView(image: UIImage(named: "front.jpg"))
         back = UIImageView(image: UIImage(named: "back.jpg"))
@@ -36,7 +41,9 @@ class ViewController: UIViewController {
         
         cardView.addSubview(back)
         
-        superimposeText(card_information: "")
+        
+        let message = String(current_factor) + " X " + String(next_factor)
+        superimposeText(card_information: String(message))
         
         view.addSubview(cardView)
     }
@@ -50,44 +57,46 @@ class ViewController: UIViewController {
     func tapped() {
         print("tapped")
         
-        
         if (showingBack) {
+            print("Transitioning from back to front")
             UIView.transition(from: back, to: front, duration: 1, options: UIViewAnimationOptions.transitionFlipFromRight, completion: nil)
-            superimposeText(card_information: "Front")
+            displayAnswer()
+            
+            next_factor! += 1
 
             showingBack = false
         } else {
+            print("Transitioning from front to back")
             UIView.transition(from: front, to: back, duration: 1, options: UIViewAnimationOptions.transitionFlipFromLeft, completion: nil)
-            superimposeText(card_information: "Back")
+            displayQuestion()
+            
             showingBack = true
+        }
+        
+        if(next_factor! == 13){
+            next_factor! = 1
+            current_factor! += 1
         }
     }
     
     
-    func multiply(first_digit: Int, second_digit: Int) -> Int {
-        print("Multiplying two digits and returning their product.")
-        let product = first_digit * second_digit
-        return product
+    func displayQuestion() {
+        let message = String(current_factor) + " X " + String(next_factor)
+        superimposeText(card_information: String(message))
     }
     
+    func displayAnswer() {
+        let product = current_factor * next_factor
+        superimposeText(card_information: String(product))
+    }
     
     func superimposeText(card_information: String) {
         print("Superimposing Text onto UIView")
         
-        /*
-        let subViews = self.cardView.subviews
-        
-        for subView in subViews {
-            if(subView is UILabel){
-                subView.removeFromSuperview()
-            }
-        }
- */
-        
-        self.textView = UILabel(frame: CGRect(x: 20, y: 20, width: 50, height: 50))
+        self.textView = UILabel(frame: CGRect(x: 20, y: 20, width: 100, height: 50))
         self.textView.text = card_information
         self.textView.numberOfLines = 1
-        self.textView.font = UIFont.systemFont(ofSize: 14)
+        self.textView.font = UIFont.systemFont(ofSize: 25)
         self.textView.center = self.front.center
         cardView.addSubview(self.textView)
 

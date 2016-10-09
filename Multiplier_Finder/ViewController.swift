@@ -13,7 +13,8 @@ class ViewController: UIViewController {
     var back: UIImageView!
     var front: UIImageView!
     var showingBack = true
-    var digits: Array = [0,1,2,3,4,5,6,7,8,9]
+    var first_digits: Array = [0,1,2,3,4,5,6,7,8,9]
+    var second_digits: Array = [0,1,2,3,4,5,6,7,8,9]
     var textView: UILabel!
 
 
@@ -29,12 +30,13 @@ class ViewController: UIViewController {
         let rect = CGRect(x: 20, y: 20, width: (back.image?.size.width)!, height: (back.image?.size.height)!)
         
         cardView = UIView(frame: rect)
+        cardView.center = view.center
         cardView.addGestureRecognizer(singleTap)
         cardView.isUserInteractionEnabled = true
         
         cardView.addSubview(back)
         
-        superimposeText()
+        superimposeText(card_information: "")
         
         view.addSubview(cardView)
     }
@@ -49,14 +51,14 @@ class ViewController: UIViewController {
         print("tapped")
         
         
-        
-        superimposeText()
-        
         if (showingBack) {
             UIView.transition(from: back, to: front, duration: 1, options: UIViewAnimationOptions.transitionFlipFromRight, completion: nil)
+            superimposeText(card_information: "Front")
+
             showingBack = false
         } else {
             UIView.transition(from: front, to: back, duration: 1, options: UIViewAnimationOptions.transitionFlipFromLeft, completion: nil)
+            superimposeText(card_information: "Back")
             showingBack = true
         }
     }
@@ -69,17 +71,26 @@ class ViewController: UIViewController {
     }
     
     
-    func superimposeText() {
+    func superimposeText(card_information: String) {
         print("Superimposing Text onto UIView")
-
+        
+        /*
+        let subViews = self.cardView.subviews
+        
+        for subView in subViews {
+            if(subView is UILabel){
+                subView.removeFromSuperview()
+            }
+        }
+ */
+        
         self.textView = UILabel(frame: CGRect(x: 20, y: 20, width: 50, height: 50))
-        self.textView.text = "Test"
+        self.textView.text = card_information
         self.textView.numberOfLines = 1
         self.textView.font = UIFont.systemFont(ofSize: 14)
         self.textView.center = self.front.center
-        
-        self.view.addSubview(self.textView)
-        
+        cardView.addSubview(self.textView)
+
     }
 
 

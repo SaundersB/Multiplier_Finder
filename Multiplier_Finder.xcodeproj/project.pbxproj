@@ -15,6 +15,7 @@
 		8B0F6E4C1DA9D64D006851AA /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8B0F6E4A1DA9D64D006851AA /* LaunchScreen.storyboard */; };
 		8B0F6E571DA9D64D006851AA /* Multiplier_FinderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B0F6E561DA9D64D006851AA /* Multiplier_FinderTests.swift */; };
 		8B0F6E621DA9D64D006851AA /* Multiplier_FinderUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B0F6E611DA9D64D006851AA /* Multiplier_FinderUITests.swift */; };
+		8BD7CD871DBD728C001889DB /* Selector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BD7CD861DBD728C001889DB /* Selector.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +50,7 @@
 		8B0F6E5D1DA9D64D006851AA /* Multiplier_FinderUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Multiplier_FinderUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		8B0F6E611DA9D64D006851AA /* Multiplier_FinderUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Multiplier_FinderUITests.swift; sourceTree = "<group>"; };
 		8B0F6E631DA9D64D006851AA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		8BD7CD861DBD728C001889DB /* Selector.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Selector.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -106,6 +108,7 @@
 				8B0F6E4A1DA9D64D006851AA /* LaunchScreen.storyboard */,
 				8B0F6E4D1DA9D64D006851AA /* Info.plist */,
 				8B0F6E451DA9D64D006851AA /* Multiplier_Finder.xcdatamodeld */,
+				8BD7CD861DBD728C001889DB /* Selector.swift */,
 			);
 			path = Multiplier_Finder;
 			sourceTree = "<group>";
@@ -270,6 +273,7 @@
 			files = (
 				8B0F6E411DA9D64D006851AA /* ViewController.swift in Sources */,
 				8B0F6E471DA9D64D006851AA /* Multiplier_Finder.xcdatamodeld in Sources */,
+				8BD7CD871DBD728C001889DB /* Selector.swift in Sources */,
 				8B0F6E3F1DA9D64D006851AA /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -521,6 +525,7 @@
 				8B0F6E681DA9D64D006851AA /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		8B0F6E691DA9D64D006851AA /* Build configuration list for PBXNativeTarget "Multiplier_FinderTests" */ = {
 			isa = XCConfigurationList;
@@ -529,6 +534,7 @@
 				8B0F6E6B1DA9D64D006851AA /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		8B0F6E6C1DA9D64D006851AA /* Build configuration list for PBXNativeTarget "Multiplier_FinderUITests" */ = {
 			isa = XCConfigurationList;
@@ -537,6 +543,7 @@
 				8B0F6E6E1DA9D64D006851AA /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 

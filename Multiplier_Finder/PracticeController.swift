@@ -18,20 +18,29 @@ class PracticeController: UIViewController {
     var current_factor: Int!
     var next_factor: Int!
     
-    
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.view.backgroundColor = UIColor.white
+
+        let navBar: UINavigationBar = UINavigationBar(frame: CGRect(x: 0, y: 50, width: self.view.frame.width, height: 44))
+        self.view.addSubview(navBar);
+        let navItem = UINavigationItem(title: "Practice");
+        let doneItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.done, target: self, action: #selector(returnToSelector));
         
+        navItem.leftBarButtonItem = doneItem;
+        navBar.setItems([navItem], animated: true);
+
         current_factor = 1
         next_factor = 1
         
         front = UIImageView(image: UIImage(named: "front.jpg"))
         back = UIImageView(image: UIImage(named: "back.jpg"))
         
-        let singleTap = UITapGestureRecognizer(target: self, action: #selector(ViewController.tapped))
+        let singleTap = UITapGestureRecognizer(target: self, action: #selector(PracticeController.tapped))
         singleTap.numberOfTapsRequired = 1
-        
         let rect = CGRect(x: 20, y: 20, width: (back.image?.size.width)!, height: (back.image?.size.height)!)
+
+        cardView = UIView(frame: rect)
         
         cardView = UIView(frame: rect)
         cardView.center = view.center
@@ -44,7 +53,15 @@ class PracticeController: UIViewController {
         superimposeText(card_information: String(message))
         
         view.addSubview(cardView)
+        
     }
+    
+    func returnToSelector() {
+        print("Button pressed")
+        let secondViewController:Selector = Selector()
+        self.present(secondViewController, animated: true, completion: nil)
+    }
+    
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -89,7 +106,7 @@ class PracticeController: UIViewController {
     }
     
     func superimposeText(card_information: String) {
-        print("Superimposing Text onto UIView")
+        print("Superimposing Text onto UIView in Practice Controller")
         
         self.textView = UILabel(frame: CGRect(x: 20, y: 20, width: 100, height: 100))
         self.textView.text = card_information
@@ -104,7 +121,6 @@ class PracticeController: UIViewController {
             self.textView.center = self.front.center
         }
         cardView.addSubview(self.textView)
-        
     }
     
     

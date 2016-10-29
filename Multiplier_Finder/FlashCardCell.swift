@@ -34,6 +34,6 @@ class FlashCardViewCell: UICollectionViewCell {
     }
     
     func startPracticing() {
-        print("Starting practice")
+        print("Starting practice with card: " + self.card_text)
     }
 }

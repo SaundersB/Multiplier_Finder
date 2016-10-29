@@ -20,7 +20,7 @@ class FlashCardViewCell: UICollectionViewCell {
         card_image_view.contentMode = .scaleAspectFill
         card_image_view.clipsToBounds = true
         contentView.addSubview(card_image_view)
-        
+        /*
         let x_value = contentView.frame.width - contentView.frame.width
         let y_value = (contentView.frame.height)/3
         let rectangle = CGRect(x: x_value, y: y_value, width: contentView.frame.width, height: 40)
@@ -29,11 +29,12 @@ class FlashCardViewCell: UICollectionViewCell {
         card_button.setTitle(card_text, for: .normal)
         card_button.layer.cornerRadius = 3
         card_button.clipsToBounds = true
-        card_button.addTarget(self, action: #selector(startPracticing), for: .touchUpInside)
+        card_button.addTarget(self,action: #selector(FlashCardViewCell.startPracticing), for: .touchUpInside)
         contentView.addSubview(card_button)
+ */
     }
     
-    func startPracticing() {
-        print("Starting practice with card: " + self.card_text)
+    func startPracticing(sender:UIButton!) {
+        print("Practicing: " + self.card_text)
     }
 }

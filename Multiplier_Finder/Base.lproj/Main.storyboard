@@ -35,8 +35,22 @@
                     <view key="view" contentMode="scaleToFill" id="R2B-b9-eWs">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="dF5-Fo-H1y">
+                                <frame key="frameInset" minY="46" width="375" height="628"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="kgF-L6-v6h" firstAttribute="top" secondItem="dF5-Fo-H1y" secondAttribute="bottom" id="0wg-a6-Pka"/>
+                            <constraint firstAttribute="trailing" secondItem="dF5-Fo-H1y" secondAttribute="trailing" constant="20" symbolic="YES" id="Xt4-Tf-MYu"/>
+                            <constraint firstItem="dF5-Fo-H1y" firstAttribute="leading" secondItem="R2B-b9-eWs" secondAttribute="leading" constant="20" symbolic="YES" id="elM-l8-9e0"/>
+                        </constraints>
                     </view>
+                    <connections>
+                        <outlet property="main_view" destination="dF5-Fo-H1y" id="tvz-gl-hNu"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dBL-EP-mSb" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

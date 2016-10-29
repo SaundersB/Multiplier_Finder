@@ -15,7 +15,7 @@ class Selector: UIViewController
     let base_image = UIImage(named: "blank")
     var images = [UIImage(named: "blank"), UIImage(named: "blank"), UIImage(named: "blank"), UIImage(named: "blank"), UIImage(named: "blank"), UIImage(named: "blank"), UIImage(named: "blank"), UIImage(named: "blank"), UIImage(named: "blank"), UIImage(named: "blank"), UIImage(named: "blank"), UIImage(named: "blank")]
     
-    @IBOutlet weak var main_view: UIView!
+    var main_view: UIView!
     
     
     override func viewDidLoad() {
@@ -31,6 +31,7 @@ class Selector: UIViewController
     
     func setupCollectionView() {
         let layout = UICollectionViewFlowLayout()
+        main_view = UIView(frame: CGRect(x: 0, y: 46, width: view.frame.width, height: view.frame.height))
         
         // Add spacing around each cell.
         layout.minimumLineSpacing = 10
@@ -60,8 +61,9 @@ class Selector: UIViewController
         print("Button pressed")
         print(sender.accessibilityHint)
         let secondViewController:PracticeController = PracticeController()
+        self.dismiss(animated: true, completion: {})
+        self.collectionView.resignFirstResponder()
         self.present(secondViewController, animated: true, completion: nil)
-
     }
 
     

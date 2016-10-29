@@ -56,9 +56,10 @@ class PracticeController: UIViewController {
         
     }
     
-    func returnToSelector() {
+    func returnToSelector(_ sender: UIButton) {
         print("Button pressed")
         let secondViewController:Selector = Selector()
+        self.dismiss(animated: true, completion: {})
         self.present(secondViewController, animated: true, completion: nil)
     }
     

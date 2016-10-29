@@ -22,7 +22,7 @@ class FlashCardViewCell: UICollectionViewCell {
         contentView.addSubview(card_image_view)
         
         let x_value = contentView.frame.width - contentView.frame.width
-        let y_value = (contentView.frame.height)/2
+        let y_value = (contentView.frame.height)/3
         let rectangle = CGRect(x: x_value, y: y_value, width: contentView.frame.width, height: 40)
         card_button = UIButton(frame: rectangle)
         card_button.backgroundColor = UIColor.darkGray

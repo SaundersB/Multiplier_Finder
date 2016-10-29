@@ -9,46 +9,19 @@
 import Foundation
 import UIKit
 
-class Selector: UIViewController {
-    var logoImages: [UIImage] = []
+class Selector: UIViewController
+{
+    var collectionView: UICollectionView!
+    let base_image = UIImage(named: "blank")
+    var images = [UIImage(named: "blank"), UIImage(named: "blank"), UIImage(named: "blank"), UIImage(named: "blank"), UIImage(named: "blank"), UIImage(named: "blank"), UIImage(named: "blank"), UIImage(named: "blank"), UIImage(named: "blank"), UIImage(named: "blank"), UIImage(named: "blank"), UIImage(named: "blank")]
     
-    /*
-     var cardView: UIView!
-     var back: UIImageView!
-     var front: UIImageView!
-     var showingBack = false
-     var textView: UILabel!
-     var current_factor: Int!
-     var next_factor: Int!
-     */
+    @IBOutlet weak var main_view: UIView!
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        /*
-         current_factor = 1
-         next_factor = 1
-         
-         front = UIImageView(image: UIImage(named: "front.jpg"))
-         back = UIImageView(image: UIImage(named: "back.jpg"))
-         
-         let singleTap = UITapGestureRecognizer(target: self, action: #selector(ViewController.tapped))
-         singleTap.numberOfTapsRequired = 1
-         
-         let rect = CGRect(x: 20, y: 20, width: (back.image?.size.width)!, height: (back.image?.size.height)!)
-         
-         cardView = UIView(frame: rect)
-         cardView.center = view.center
-         cardView.addGestureRecognizer(singleTap)
-         cardView.isUserInteractionEnabled = true
-         
-         cardView.addSubview(back)
-         
-         let message = String(current_factor) + " X " + String(next_factor)
-         superimposeText(card_information: String(message))
-         
-         view.addSubview(cardView)
-         */
+        print("Loading view in Selector")
+        setupCollectionView()
     }
     
     override func didReceiveMemoryWarning() {
@@ -56,65 +29,89 @@ class Selector: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    /*
-     
-     func tapped() {
-     print("tapped")
-     
-     if (showingBack) {
-     print("Transitioning from back to front")
-     UIView.transition(from: back, to: front, duration: 1, options: UIViewAnimationOptions.transitionFlipFromRight, completion: nil)
-     displayAnswer()
-     
-     next_factor! += 1
-     
-     showingBack = false
-     } else {
-     print("Transitioning from front to back")
-     UIView.transition(from: front, to: back, duration: 1, options: UIViewAnimationOptions.transitionFlipFromLeft, completion: nil)
-     displayQuestion()
-     
-     showingBack = true
-     }
-     
-     if(next_factor! == 13){
-     next_factor! = 1
-     current_factor! += 1
-     }
-     }
-     
-     
-     func displayQuestion() {
-     let message = String(current_factor) + " X " + String(next_factor)
-     superimposeText(card_information: String(message))
-     }
-     
-     func displayAnswer() {
-     let product = current_factor * next_factor
-     superimposeText(card_information: String(product))
-     }
-     
-     func superimposeText(card_information: String) {
-     print("Superimposing Text onto UIView")
-     
-     self.textView = UILabel(frame: CGRect(x: 20, y: 20, width: 100, height: 100))
-     self.textView.text = card_information
-     self.textView.numberOfLines = 1
-     
-     self.textView.font = UIFont.systemFont(ofSize: 50)
-     self.textView.adjustsFontSizeToFitWidth = true
-     
-     if(showingBack){
-     self.textView.center = self.back.center
-     } else {
-     self.textView.center = self.front.center
-     }
-     cardView.addSubview(self.textView)
-     
-     }
-     
-     */
+    func setupCollectionView() {
+        let layout = UICollectionViewFlowLayout()
+        
+        // Add spacing around each cell.
+        layout.minimumLineSpacing = 10
+        layout.minimumInteritemSpacing = 10
+        
+        // Set each cell size to the size of the image.
+        layout.estimatedItemSize = CGSize(width: (base_image?.size.width)!, height: (base_image?.size.height)!)
+        
+        // Set the collection view to the size of the view frame.
+        collectionView = UICollectionView(frame: main_view.frame, collectionViewLayout: layout)
+        
+        // Register all images with the FlashCardViewCell object.
+        collectionView.register(FlashCardViewCell.self, forCellWithReuseIdentifier: "cell")
+        
+        // Set the background color.
+        collectionView.backgroundColor = UIColor.white
+        collectionView.delegate = self
+        collectionView.dataSource = self
+        
+        // Add the collections view to the main view.
+        view.addSubview(collectionView)
+}
     
+    
+    
+    func startPracticing(sender:UIButton!) {
+        print("Button pressed")
+        print(sender.accessibilityHint)
+        
+        //let navController = UINavigationController(rootViewController: self)
+        // 2. Present the navigation controller
+        //self.present(navController, animated: true, completion: nil)
+    }
+
     
 }
+
+
+extension Selector: UICollectionViewDelegate, UICollectionViewDataSource
+{
+    func numberOfSections(in collectionView: UICollectionView) -> Int {
+        return 1
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return images.count
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath)
+        let contentView = cell.contentView
+        let card_image_view = UIImageView(image: base_image)
+        
+        card_image_view.contentMode = .scaleAspectFill
+        card_image_view.clipsToBounds = true
+        contentView.addSubview(card_image_view)
+        
+        let x_value = contentView.frame.width - contentView.frame.width
+        let y_value = (contentView.frame.height)/3
+        let rectangle = CGRect(x: x_value, y: y_value, width: contentView.frame.width, height: 40)
+        let card_button = UIButton(frame: rectangle)
+        
+        card_button.backgroundColor = UIColor.darkGray
+        
+        let card_text = String(indexPath.item + 1)
+        card_button.setTitle(card_text, for: .normal)
+        card_button.layer.cornerRadius = 3
+        card_button.clipsToBounds = true
+        card_button.accessibilityHint = card_text
+        card_button.addTarget(self,action: #selector(startPracticing), for: .touchUpInside)
+        contentView.addSubview(card_button)
+
+        return cell
+    }
+ 
+    func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+        //let cardCell = cell as! FlashCardViewCell
+        //cardCell.card_image_view.image = images[indexPath.row]
+    }
+    
+}
+
+
 

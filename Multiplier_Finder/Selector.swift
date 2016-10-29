@@ -59,10 +59,12 @@ class Selector: UIViewController
     func startPracticing(sender:UIButton!) {
         print("Button pressed")
         print(sender.accessibilityHint)
+    
         
-        //let navController = UINavigationController(rootViewController: self)
-        // 2. Present the navigation controller
-        //self.present(navController, animated: true, completion: nil)
+        let secondViewController:PracticeController = PracticeController()
+        
+        self.present(secondViewController, animated: true, completion: nil)
+
     }
 
     

@@ -58,11 +58,25 @@ class Selector: UIViewController
     
     
     func startPracticing(sender:UIButton!) {
+        // Transition to the Practice screen.
         print("Button pressed")
         print(sender.accessibilityHint)
+        
+        // Initialize the Practice view controller.
         let secondViewController:PracticeController = PracticeController()
+        
+        // Set the value to be practiced.
+        //secondViewController.starting_factor = String(describing: sender.accessibilityHint)
+        //secondViewController.starting_factor = String(describing:sender.accessibilityValue)
+        secondViewController.starting_factor = sender.tag
+        
+        // Remove the Selector view controller.
         self.dismiss(animated: true, completion: {})
+        
+        // Clean up the collection view.
         self.collectionView.resignFirstResponder()
+        
+        // Present the Practice view controller to the user.
         self.present(secondViewController, animated: true, completion: nil)
     }
 
@@ -95,12 +109,13 @@ extension Selector: UICollectionViewDelegate, UICollectionViewDataSource
         let card_button = UIButton(frame: rectangle)
         
         card_button.backgroundColor = UIColor.darkGray
-        
+        let card_number = indexPath.item + 1
         let card_text = String(indexPath.item + 1)
         card_button.setTitle(card_text, for: .normal)
         card_button.layer.cornerRadius = 3
         card_button.clipsToBounds = true
-        card_button.accessibilityHint = card_text
+        card_button.tag = card_number
+        //card_button.accessibilityValue = String(describing: card_text)
         card_button.addTarget(self,action: #selector(startPracticing), for: .touchUpInside)
         contentView.addSubview(card_button)
 

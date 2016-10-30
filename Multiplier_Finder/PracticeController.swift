@@ -17,6 +17,8 @@ class PracticeController: UIViewController {
     var textView: UILabel!
     var current_factor: Int!
     var next_factor: Int!
+    var starting_factor: Int!
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -29,8 +31,10 @@ class PracticeController: UIViewController {
         
         navItem.leftBarButtonItem = doneItem;
         navBar.setItems([navItem], animated: true);
+        
+        print("Value: "  + String(self.starting_factor))
 
-        current_factor = 1
+        current_factor = self.starting_factor
         next_factor = 1
         
         front = UIImageView(image: UIImage(named: "front.jpg"))

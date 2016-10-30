@@ -24,7 +24,7 @@ class PracticeController: UIViewController {
         super.viewDidLoad()
         self.view.backgroundColor = UIColor.white
 
-        let navBar: UINavigationBar = UINavigationBar(frame: CGRect(x: 0, y: 50, width: self.view.frame.width, height: 44))
+        let navBar: UINavigationBar = UINavigationBar(frame: CGRect(x: 0, y: 20, width: self.view.frame.width, height: 44))
         self.view.addSubview(navBar);
         let navItem = UINavigationItem(title: "Practice");
         let doneItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.done, target: self, action: #selector(returnToSelector));
@@ -32,6 +32,7 @@ class PracticeController: UIViewController {
         navItem.leftBarButtonItem = doneItem;
         navBar.setItems([navItem], animated: true);
         
+        // The initialized value from the selection menu.
         print("Value: "  + String(self.starting_factor))
 
         current_factor = self.starting_factor

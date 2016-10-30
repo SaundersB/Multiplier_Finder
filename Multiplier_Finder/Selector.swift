@@ -13,6 +13,8 @@ class Selector: UIViewController
 {
     var collectionView: UICollectionView!
     let base_image = UIImage(named: "blank")
+    
+    // Initialize 12 cards for the typical 12 x 12 multiplication table.
     var images = [UIImage(named: "blank"), UIImage(named: "blank"), UIImage(named: "blank"), UIImage(named: "blank"), UIImage(named: "blank"), UIImage(named: "blank"), UIImage(named: "blank"), UIImage(named: "blank"), UIImage(named: "blank"), UIImage(named: "blank"), UIImage(named: "blank"), UIImage(named: "blank")]
     
     var main_view: UIView!
@@ -30,6 +32,7 @@ class Selector: UIViewController
     }
     
     func setupCollectionView() {
+        // Create a layout.
         let layout = UICollectionViewFlowLayout()
         main_view = UIView(frame: CGRect(x: 0, y: 46, width: view.frame.width, height: view.frame.height))
         
@@ -66,8 +69,6 @@ class Selector: UIViewController
         let secondViewController:PracticeController = PracticeController()
         
         // Set the value to be practiced.
-        //secondViewController.starting_factor = String(describing: sender.accessibilityHint)
-        //secondViewController.starting_factor = String(describing:sender.accessibilityValue)
         secondViewController.starting_factor = sender.tag
         
         // Remove the Selector view controller.
@@ -91,31 +92,43 @@ extension Selector: UICollectionViewDelegate, UICollectionViewDataSource
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        // Set the size of our collection view to the number of images that we have.
         return images.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        // Initialize the cells of the collection view.
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath)
         let contentView = cell.contentView
+        
+        // Set each cell to the card image.
         let card_image_view = UIImageView(image: base_image)
         
+        // Fill the image view correctly and add it to the view.
         card_image_view.contentMode = .scaleAspectFill
         card_image_view.clipsToBounds = true
         contentView.addSubview(card_image_view)
         
+        // Coordinaes and geometric property setting.
         let x_value = contentView.frame.width - contentView.frame.width
         let y_value = (contentView.frame.height)/3
         let rectangle = CGRect(x: x_value, y: y_value, width: contentView.frame.width, height: 40)
         let card_button = UIButton(frame: rectangle)
         
+        // Set the color of each card button.
         card_button.backgroundColor = UIColor.darkGray
+        
+        // Keep track of the multiplication set to practice.
         let card_number = indexPath.item + 1
         let card_text = String(indexPath.item + 1)
+        
+        // Set the current multiplication set to practice.
         card_button.setTitle(card_text, for: .normal)
         card_button.layer.cornerRadius = 3
         card_button.clipsToBounds = true
+        
+        // Set the selected card number from the respective button pressed.
         card_button.tag = card_number
-        //card_button.accessibilityValue = String(describing: card_text)
         card_button.addTarget(self,action: #selector(startPracticing), for: .touchUpInside)
         contentView.addSubview(card_button)
 

@@ -32,7 +32,7 @@ class PracticeController: UIViewController {
         self.view.addSubview(navBar);
         
         // Add the title and back button.
-        let navItem = UINavigationItem(title: "Practice");
+        let navItem = UINavigationItem(title: "Multiplier Finder");
         let doneItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.done, target: self, action: #selector(returnToSelector));
         
         navItem.leftBarButtonItem = doneItem;
@@ -45,12 +45,31 @@ class PracticeController: UIViewController {
         next_factor = 1
         
         // Create the UI flash card.
-        front = UIImageView(image: UIImage(named: "blank.jpg"))
-        back = UIImageView(image: UIImage(named: "blank.jpg"))
+        front = UIImageView(image: UIImage(named: "blank_large.jpg"))
+        back = UIImageView(image: UIImage(named: "blank_large.jpg"))
         
+        front.layer.cornerRadius = 10.0
+        back.layer.cornerRadius = 10.0
+
         let singleTap = UITapGestureRecognizer(target: self, action: #selector(PracticeController.tapped))
         singleTap.numberOfTapsRequired = 1
         let rect = CGRect(x: front.frame.size.width/2, y: front.frame.size.height/2, width: (front.image?.size.width)!, height: (front.image?.size.height)!)
+        
+        let swipeRight = UISwipeGestureRecognizer(target: self, action: #selector(PracticeController.respondToSwipeGesture))
+        swipeRight.direction = UISwipeGestureRecognizerDirection.right
+        self.view.addGestureRecognizer(swipeRight)
+        
+        let swipeDown = UISwipeGestureRecognizer(target: self, action: #selector(PracticeController.respondToSwipeGesture))
+        swipeDown.direction = UISwipeGestureRecognizerDirection.down
+        self.view.addGestureRecognizer(swipeDown)
+        
+        let swipeUp = UISwipeGestureRecognizer(target: self, action: #selector(PracticeController.respondToSwipeGesture))
+        swipeUp.direction = UISwipeGestureRecognizerDirection.up
+        self.view.addGestureRecognizer(swipeUp)
+        
+        let swipeLeft = UISwipeGestureRecognizer(target: self, action: #selector(PracticeController.respondToSwipeGesture))
+        swipeLeft.direction = UISwipeGestureRecognizerDirection.left
+        self.view.addGestureRecognizer(swipeLeft)
         
         cardView = UIView(frame: rect)
         cardView.center = view.center
@@ -62,6 +81,27 @@ class PracticeController: UIViewController {
         superimposeText(card_information: String(message))
         
         view.addSubview(cardView)
+        
+    }
+    
+    func respondToSwipeGesture(gesture: UISwipeGestureRecognizer) {
+        print("RespondetoSwipeGesture")
+        print(gesture.direction)
+        
+        if let swipeGesture = gesture as? UISwipeGestureRecognizer {
+            switch swipeGesture.direction {
+            case UISwipeGestureRecognizerDirection.right:
+                print("Swiped right")
+            case UISwipeGestureRecognizerDirection.down:
+                print("Swiped down")
+            case UISwipeGestureRecognizerDirection.left:
+                print("Swiped left")
+            case UISwipeGestureRecognizerDirection.up:
+                print("Swiped up")
+            default:
+                break
+            }
+        }
         
     }
     
@@ -103,6 +143,10 @@ class PracticeController: UIViewController {
             next_factor! = 1
             current_factor! += 1
         }
+    }
+    
+    func swipedUp() {
+        
     }
     
     

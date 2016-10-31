@@ -56,7 +56,7 @@ class PracticeController: UIViewController {
         cardView.center = view.center
         cardView.isUserInteractionEnabled = true
         cardView.addGestureRecognizer(singleTap)
-        cardView.addSubview(back)
+        cardView.addSubview(front)
         
         let message = String(current_factor) + " X " + String(next_factor)
         superimposeText(card_information: String(message))
@@ -82,19 +82,19 @@ class PracticeController: UIViewController {
     func tapped() {
         print("tapped")
         
-        if (self.showingBack == true) {
+        if (self.showingBack) {
             print("Transitioning from back to front")
             UIView.transition(from: back, to: front, duration: 1, options: UIViewAnimationOptions.transitionFlipFromRight, completion: nil)
-            displayAnswer()
-            
-            next_factor! += 1
+            displayQuestion()
             
             self.showingBack = false
         } else {
             print("Transitioning from front to back")
             UIView.transition(from: front, to: back, duration: 1, options: UIViewAnimationOptions.transitionFlipFromLeft, completion: nil)
-            displayQuestion()
+            displayAnswer()
             
+            next_factor! += 1
+
             self.showingBack = true
         }
         

@@ -1,14 +1,15 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11134" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11201" systemVersion="16B2555" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="Gko-e5-5ms">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11106"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
         <!--View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="Multiplier_Finder" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
@@ -21,6 +22,75 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="2524" y="-81"/>
+        </scene>
+        <!--Selector-->
+        <scene sceneID="sZD-OG-WbD">
+            <objects>
+                <viewController id="Gko-e5-5ms" customClass="Selector" customModule="Multiplier_Finder" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="oqy-NH-W2d"/>
+                        <viewControllerLayoutGuide type="bottom" id="kgF-L6-v6h"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="R2B-b9-eWs">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="dF5-Fo-H1y">
+                                <frame key="frameInset" minY="46" width="375" height="628"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="kgF-L6-v6h" firstAttribute="top" secondItem="dF5-Fo-H1y" secondAttribute="bottom" id="0wg-a6-Pka"/>
+                            <constraint firstAttribute="trailing" secondItem="dF5-Fo-H1y" secondAttribute="trailing" constant="20" symbolic="YES" id="Xt4-Tf-MYu"/>
+                            <constraint firstItem="dF5-Fo-H1y" firstAttribute="leading" secondItem="R2B-b9-eWs" secondAttribute="leading" constant="20" symbolic="YES" id="elM-l8-9e0"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="main_view" destination="dF5-Fo-H1y" id="tvz-gl-hNu"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dBL-EP-mSb" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="834" y="-81"/>
+        </scene>
+        <!--Practice Controller-->
+        <scene sceneID="6QB-BS-f29">
+            <objects>
+                <viewController id="wF8-BF-rQc" customClass="PracticeController" customModule="Multiplier_Finder" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="DU0-YI-qyK"/>
+                        <viewControllerLayoutGuide type="bottom" id="Ygt-0c-hkq"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="biE-HC-5lP">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <navigationBar contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="nJH-hG-Ly4">
+                                <frame key="frameInset" minY="28" height="44"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                <items>
+                                    <navigationItem title="Title" id="0Zn-6l-s64">
+                                        <barButtonItem key="leftBarButtonItem" title="Back" id="TJF-6X-6su">
+                                            <connections>
+                                                <segue destination="Gko-e5-5ms" kind="show" id="l6U-67-2Kn"/>
+                                            </connections>
+                                        </barButtonItem>
+                                    </navigationItem>
+                                </items>
+                            </navigationBar>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <connections>
+                        <outlet property="navigation_bar" destination="0Zn-6l-s64" id="Y5u-zz-9ez"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="etL-f2-q6x" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1552.8" y="-81.409295352323838"/>
         </scene>
     </scenes>
 </document>

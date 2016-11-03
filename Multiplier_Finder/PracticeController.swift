@@ -27,16 +27,6 @@ class PracticeController: UIViewController {
         // Set the view background to white.
         self.view.backgroundColor = UIColor.white
 
-        // Create a navigation bar.
-        let navBar: UINavigationBar = UINavigationBar(frame: CGRect(x: 0, y: 20, width: self.view.frame.width, height: 44))
-        self.view.addSubview(navBar);
-        
-        // Add the title and back button.
-        let navItem = UINavigationItem(title: "Multiplier Finder");
-        let doneItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.done, target: self, action: #selector(returnToSelector));
-        
-        navItem.leftBarButtonItem = doneItem;
-        navBar.setItems([navItem], animated: true);
         
         // The initialized value from the selection menu.
         print("Value: "  + String(self.starting_factor))
@@ -45,8 +35,8 @@ class PracticeController: UIViewController {
         next_factor = 1
         
         // Create the UI flash card.
-        front = UIImageView(image: UIImage(named: "blank_large.jpg"))
-        back = UIImageView(image: UIImage(named: "blank_large.jpg"))
+        front = UIImageView(image: UIImage(named: "flash_card.png"))
+        back = UIImageView(image: UIImage(named: "flash_card.png"))
         
         front.layer.cornerRadius = 10.0
         back.layer.cornerRadius = 10.0
@@ -135,9 +125,7 @@ class PracticeController: UIViewController {
         if (!self.showingBack) {
             UIView.transition(from: front, to: back, duration: 1, options: UIViewAnimationOptions.transitionFlipFromRight, completion: nil)
             displayAnswer()
-            
             next_factor! += 1
-            
             self.showingBack = true
         }
         increment_factor()
@@ -150,7 +138,10 @@ class PracticeController: UIViewController {
         }
     }
     
-    
+    func is_showing_back_card() -> Bool{
+        if (self.showingBack) { return true }
+        else { return false }
+    }
     
     
     func tapped() {
@@ -172,11 +163,7 @@ class PracticeController: UIViewController {
             self.showingBack = true
         }
         
-        
-        if(next_factor! >= 13){
-            next_factor! = 1
-            current_factor! += 1
-        }
+        increment_factor()
     }
     
     func swipedUp() {
@@ -202,7 +189,7 @@ class PracticeController: UIViewController {
         self.textView.numberOfLines = 1
         self.textView.textAlignment = .center
         
-        //self.textView.font = UIFont.systemFont(ofSize: 50)
+        self.textView.font = UIFont.systemFont(ofSize: 50)
         self.textView.adjustsFontSizeToFitWidth = true
         
         if(showingBack){

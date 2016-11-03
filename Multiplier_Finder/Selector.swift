@@ -63,7 +63,7 @@ class Selector: UIViewController
     func startPracticing(sender:UIButton!) {
         // Transition to the Practice screen.
         print("Button pressed")
-        print(sender.accessibilityHint)
+        print(sender.accessibilityHint ?? "0")
         
         // Initialize the Practice view controller.
         let secondViewController:PracticeController = PracticeController()

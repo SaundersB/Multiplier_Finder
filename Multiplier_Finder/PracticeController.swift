@@ -94,6 +94,7 @@ class PracticeController: UIViewController {
                 print("Swiped right")
             case UISwipeGestureRecognizerDirection.down:
                 print("Swiped down")
+                dismiss(animated: true, completion: nil)
             case UISwipeGestureRecognizerDirection.left:
                 print("Swiped left")
             case UISwipeGestureRecognizerDirection.up:

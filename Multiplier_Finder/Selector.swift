@@ -12,7 +12,7 @@ import UIKit
 class Selector: UIViewController
 {
     var collectionView: UICollectionView!
-    let base_image = UIImage(named: "blank")
+    let base_image = UIImage(named: "small_flash_card.png")
     
     // Initialize 12 cards for the typical 12 x 12 multiplication table.
     var images = [UIImage(named: "blank"), UIImage(named: "blank"), UIImage(named: "blank"), UIImage(named: "blank"), UIImage(named: "blank"), UIImage(named: "blank"), UIImage(named: "blank"), UIImage(named: "blank"), UIImage(named: "blank"), UIImage(named: "blank"), UIImage(named: "blank"), UIImage(named: "blank")]
@@ -23,6 +23,7 @@ class Selector: UIViewController
     override func viewDidLoad() {
         super.viewDidLoad()
         print("Loading view in Selector")
+        
         setupCollectionView()
     }
     
@@ -32,6 +33,10 @@ class Selector: UIViewController
     }
     
     func setupCollectionView() {
+        let background_image = UIImage(named: "blackboard.jpg")
+        let uicolor = UIColor(patternImage: background_image!)
+        view.backgroundColor = uicolor
+
         // Create a layout.
         let layout = UICollectionViewFlowLayout()
         main_view = UIView(frame: CGRect(x: 0, y: 46, width: view.frame.width, height: view.frame.height))
@@ -50,7 +55,7 @@ class Selector: UIViewController
         collectionView.register(FlashCardViewCell.self, forCellWithReuseIdentifier: "cell")
         
         // Set the background color.
-        collectionView.backgroundColor = UIColor.white
+        collectionView.backgroundColor = uicolor
         collectionView.delegate = self
         collectionView.dataSource = self
         
@@ -111,19 +116,20 @@ extension Selector: UICollectionViewDelegate, UICollectionViewDataSource
         
         // Coordinaes and geometric property setting.
         let x_value = contentView.frame.width - contentView.frame.width
-        let y_value = (contentView.frame.height)/3
-        let rectangle = CGRect(x: x_value, y: y_value, width: contentView.frame.width, height: 40)
+        let y_value = contentView.frame.height - contentView.frame.height
+        let rectangle = CGRect(x: x_value, y: y_value, width: contentView.frame.width, height: contentView.frame.height)
         let card_button = UIButton(frame: rectangle)
         
         // Set the color of each card button.
-        card_button.backgroundColor = UIColor.darkGray
-        
+        card_button.backgroundColor = UIColor.clear
+    
         // Keep track of the multiplication set to practice.
         let card_number = indexPath.item + 1
         let card_text = String(indexPath.item + 1)
         
         // Set the current multiplication set to practice.
         card_button.setTitle(card_text, for: .normal)
+        card_button.setTitleColor(UIColor.black, for: UIControlState.normal)
         card_button.layer.cornerRadius = 3
         card_button.clipsToBounds = true
         

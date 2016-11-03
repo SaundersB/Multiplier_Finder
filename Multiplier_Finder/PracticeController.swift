@@ -92,11 +92,13 @@ class PracticeController: UIViewController {
             switch swipeGesture.direction {
             case UISwipeGestureRecognizerDirection.right:
                 print("Swiped right")
+                flip_card_to_the_right()
             case UISwipeGestureRecognizerDirection.down:
                 print("Swiped down")
                 dismiss(animated: true, completion: nil)
             case UISwipeGestureRecognizerDirection.left:
                 print("Swiped left")
+                flip_card_to_the_left()
             case UISwipeGestureRecognizerDirection.up:
                 print("Swiped up")
             default:
@@ -118,6 +120,37 @@ class PracticeController: UIViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    
+    
+    func flip_card_to_the_right() {
+        if (self.showingBack) {
+            UIView.transition(from: back, to: front, duration: 1, options: UIViewAnimationOptions.transitionFlipFromLeft, completion: nil)
+            displayQuestion()
+            self.showingBack = false
+        }
+        increment_factor()
+    }
+    
+    func flip_card_to_the_left() {
+        if (!self.showingBack) {
+            UIView.transition(from: front, to: back, duration: 1, options: UIViewAnimationOptions.transitionFlipFromRight, completion: nil)
+            displayAnswer()
+            
+            next_factor! += 1
+            
+            self.showingBack = true
+        }
+        increment_factor()
+    }
+    
+    func increment_factor() {
+        if(next_factor! >= 13){
+            next_factor! = 1
+            current_factor! += 1
+        }
+    }
+    
+    
     
     
     func tapped() {

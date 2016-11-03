@@ -24,10 +24,12 @@ class PracticeController: UIViewController {
         super.viewDidLoad()
         self.showingBack = false
         
-        // Set the view background to white.
-        self.view.backgroundColor = UIColor.white
-
         
+        let background_image = UIImage(named: "blackboard.jpg")
+        let uicolor = UIColor(patternImage: background_image!)
+        view.backgroundColor = uicolor
+
+    
         // The initialized value from the selection menu.
         print("Value: "  + String(self.starting_factor))
 

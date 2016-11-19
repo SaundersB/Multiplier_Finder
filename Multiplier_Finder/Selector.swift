@@ -18,12 +18,29 @@ class Selector: UIViewController
     var images = [UIImage(named: "blank"), UIImage(named: "blank"), UIImage(named: "blank"), UIImage(named: "blank"), UIImage(named: "blank"), UIImage(named: "blank"), UIImage(named: "blank"), UIImage(named: "blank"), UIImage(named: "blank"), UIImage(named: "blank"), UIImage(named: "blank"), UIImage(named: "blank")]
     
     var main_view: UIView!
+    var activity_label: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         print("Loading view in Selector")
         
         setupCollectionView()
+        
+        let label_rectangle = CGRect(x: 0, y: self.view.frame.height * 0.10, width: view.frame.width, height: 60)
+        activity_label = UILabel(frame: label_rectangle)
+        activity_label.font = UIFont(name: "American Typewriter", size: 60)
+        activity_label.text = "PICK A MULTIPLICATION SET"
+        activity_label.textColor = .white
+        activity_label.layer.borderWidth = 3
+        activity_label.layer.cornerRadius = 10.0
+        activity_label.layer.masksToBounds = true
+        activity_label.layer.borderColor = UIColor.white.cgColor
+        activity_label.adjustsFontSizeToFitWidth = true
+        activity_label.minimumScaleFactor = 0.2
+        activity_label.numberOfLines = 1
+        activity_label.textAlignment = .center
+        view.addSubview(activity_label)
+
     }
     
     override func didReceiveMemoryWarning() {

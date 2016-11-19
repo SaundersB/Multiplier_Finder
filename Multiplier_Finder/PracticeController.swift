@@ -19,20 +19,29 @@ class PracticeController: UIViewController {
     var next_factor: Int!
     var starting_factor: Int!
     
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.showingBack = false
         
-        
+        setupBackground()
+
+        setupFlashCard()
+
+        setupGestureRecognition()
+
+        setupFlashCardText()
+    }
+    
+    func setupBackground() {
         let background_image = UIImage(named: "blackboard.jpg")
         let uicolor = UIColor(patternImage: background_image!)
         view.backgroundColor = uicolor
-
+    }
     
+    func setupFlashCard() {
         // The initialized value from the selection menu.
         print("Value: "  + String(self.starting_factor))
-
+        
         current_factor = self.starting_factor
         next_factor = 1
         
@@ -43,6 +52,9 @@ class PracticeController: UIViewController {
         front.layer.cornerRadius = 10.0
         back.layer.cornerRadius = 10.0
 
+    }
+    
+    func setupGestureRecognition() {
         let singleTap = UITapGestureRecognizer(target: self, action: #selector(PracticeController.tapped))
         singleTap.numberOfTapsRequired = 1
         let rect = CGRect(x: front.frame.size.width/2, y: front.frame.size.height/2, width: (front.image?.size.width)!, height: (front.image?.size.height)!)
@@ -68,12 +80,13 @@ class PracticeController: UIViewController {
         cardView.isUserInteractionEnabled = true
         cardView.addGestureRecognizer(singleTap)
         cardView.addSubview(front)
-        
+    }
+    
+    func setupFlashCardText() {
         let message = String(current_factor) + " X " + String(next_factor)
         superimposeText(card_information: String(message))
         
         view.addSubview(cardView)
-        
     }
     
     func respondToSwipeGesture(gesture: UISwipeGestureRecognizer) {

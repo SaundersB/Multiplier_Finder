@@ -25,7 +25,15 @@ class Selector: UIViewController
         print("Loading view in Selector")
         
         setupCollectionView()
-        
+        setupSelectorHeaderLabel()
+    }
+    
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+        // Dispose of any resources that can be recreated.
+    }
+    
+    func setupSelectorHeaderLabel() {
         let label_rectangle = CGRect(x: 0, y: self.view.frame.height * 0.10, width: view.frame.width, height: 60)
         activity_label = UILabel(frame: label_rectangle)
         activity_label.font = UIFont(name: "American Typewriter", size: 60)
@@ -40,12 +48,6 @@ class Selector: UIViewController
         activity_label.numberOfLines = 1
         activity_label.textAlignment = .center
         view.addSubview(activity_label)
-
-    }
-    
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
     
     func setupCollectionView() {
@@ -77,8 +79,7 @@ class Selector: UIViewController
         
         // Add the collections view to the main view.
         view.addSubview(collectionView)
-}
-    
+    }
     
     
     func startPracticing(sender:UIButton!) {

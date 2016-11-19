@@ -144,12 +144,13 @@ class PracticeController: UIViewController {
         down_arrow_view = UIImageView(frame: CGRect(x: self.view.bounds.width/2 - down_arrow_width , y: self.view.bounds.height - down_arrow_height, width: down_arrow_width, height: down_arrow_height))
         let down_arrow = UIImage(named: "arrow_down")
         down_arrow_view.image = down_arrow
+        down_arrow_view.center.x = self.view.center.x
         view.addSubview(down_arrow_view)
     }
     
     func setupDownArrowHeader() {
         let label_size = CGFloat(35)
-        let label_rectangle = CGRect(x: 0, y: self.view.frame.height - (down_arrow_view.frame.height + label_size + 5), width: view.frame.size.width, height: label_size)
+        let label_rectangle = CGRect(x: 0, y: self.view.frame.height - (down_arrow_view.frame.height + label_size + 5), width: cardView.frame.size.width, height: label_size)
         let arrow_label = UILabel(frame: label_rectangle)
         arrow_label.font = UIFont(name: "American Typewriter", size: 15)
         arrow_label.text = "SWIPE DOWN TO SELECT ANOTHER SET"
@@ -162,6 +163,7 @@ class PracticeController: UIViewController {
         arrow_label.minimumScaleFactor = 0.2
         arrow_label.numberOfLines = 1
         arrow_label.textAlignment = .center
+        arrow_label.center.x = self.view.center.x
         view.addSubview(arrow_label)
     }
     
@@ -218,15 +220,23 @@ class PracticeController: UIViewController {
     
     func hideRightSideArrow() {
         // Hide the instructions right side arrows.
-        right_arrow_view.isHidden = true
-        right_arrow_label.isHidden = true
-        hasUserSwipedRight = true
+        if (right_arrow_view != nil) {
+            right_arrow_view.isHidden = true
+        }
+        if (right_arrow_label != nil) {
+            right_arrow_label.isHidden = true
+            hasUserSwipedRight = true
+        }
     }
     
     func hideLeftSideArrow() {
-        left_arrow_view.isHidden = true
-        left_arrow_label.isHidden = true
-        hasUserSwipedLeft = true
+        if (left_arrow_view != nil) {
+            left_arrow_view.isHidden = true
+            hasUserSwipedLeft = true
+        }
+        if (left_arrow_label != nil) {
+            left_arrow_label.isHidden = true
+        }
     }
     
     
@@ -246,6 +256,7 @@ class PracticeController: UIViewController {
             case UISwipeGestureRecognizerDirection.left:
                 print("Swiped left")
                 flip_card_to_the_left()
+                
                 hideLeftSideArrow()
                 
                 if(!hasUserSwipedRight) {

@@ -18,18 +18,35 @@ class PracticeController: UIViewController {
     var current_factor: Int!
     var next_factor: Int!
     var starting_factor: Int!
+    var down_arrow_view: UIImageView!
+    
+    var main_view: UIView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.showingBack = false
         
+        setupView()
+        
         setupBackground()
+        
+        setupPracticeHeaderLabel()
 
         setupFlashCard()
 
         setupGestureRecognition()
 
         setupFlashCardText()
+        
+        setupArrow()
+        
+        setupArrowHeader()
+    }
+    
+    func setupView() {
+        main_view = UIView(frame: CGRect(x: 0, y: 0, width: view.frame.width, height: view.frame.height - (view.frame.height * 0.98)))
+        main_view.backgroundColor = .white
+        view.addSubview(main_view)
     }
     
     func setupBackground() {
@@ -37,6 +54,25 @@ class PracticeController: UIViewController {
         let uicolor = UIColor(patternImage: background_image!)
         view.backgroundColor = uicolor
     }
+    
+    func setupPracticeHeaderLabel() {
+        let label_rectangle = CGRect(x: 0, y: self.view.frame.height * 0.05, width: view.frame.width, height: 60)
+        let practice_label = UILabel(frame: label_rectangle)
+        practice_label.font = UIFont(name: "American Typewriter", size: 60)
+        practice_label.text = "MULTIPLICATION PRACTICE"
+        practice_label.textColor = .white
+        practice_label.layer.borderWidth = 3
+        practice_label.layer.cornerRadius = 10.0
+        practice_label.layer.masksToBounds = true
+        practice_label.layer.borderColor = UIColor.white.cgColor
+        practice_label.adjustsFontSizeToFitWidth = true
+        practice_label.minimumScaleFactor = 0.2
+        practice_label.numberOfLines = 1
+        practice_label.textAlignment = .center
+        view.addSubview(practice_label)
+    }
+    
+
     
     func setupFlashCard() {
         // The initialized value from the selection menu.
@@ -88,6 +124,32 @@ class PracticeController: UIViewController {
         
         view.addSubview(cardView)
     }
+    
+    func setupArrow() {
+        down_arrow_view = UIImageView(frame: CGRect(x: self.view.bounds.width * 0.45, y: self.view.bounds.height - 100, width: 50, height: 100))
+        let down_arrow = UIImage(named: "arrow_down")
+        down_arrow_view.image = down_arrow
+        view.addSubview(down_arrow_view)
+    }
+    
+    func setupArrowHeader() {
+        let label_size = CGFloat(25)
+        let label_rectangle = CGRect(x: 0, y: self.view.frame.height - (down_arrow_view.frame.height + 30), width: view.frame.size.width, height: label_size)
+        let arrow_label = UILabel(frame: label_rectangle)
+        arrow_label.font = UIFont(name: "American Typewriter", size: 25)
+        arrow_label.text = "SWIPE DOWN TO SELECT ANOTHER SET"
+        arrow_label.textColor = .white
+        arrow_label.layer.borderWidth = 3
+        arrow_label.layer.cornerRadius = 10.0
+        arrow_label.layer.masksToBounds = true
+        arrow_label.layer.borderColor = UIColor.white.cgColor
+        arrow_label.adjustsFontSizeToFitWidth = true
+        arrow_label.minimumScaleFactor = 0.2
+        arrow_label.numberOfLines = 1
+        arrow_label.textAlignment = .center
+        view.addSubview(arrow_label)
+    }
+    
     
     func respondToSwipeGesture(gesture: UISwipeGestureRecognizer) {
         print("RespondetoSwipeGesture")

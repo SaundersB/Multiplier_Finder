@@ -22,8 +22,8 @@ class Selector: UIViewController
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        print("Loading view in Selector")
         
+        setupView()
         setupCollectionView()
         setupSelectorHeaderLabel()
     }
@@ -31,6 +31,13 @@ class Selector: UIViewController
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    func setupView() {
+        // Creates a white view
+        main_view = UIView(frame: CGRect(x: 0, y: 0, width: view.frame.width, height: view.frame.height - (view.frame.height * 0.98)))
+        main_view.backgroundColor = .white
+        view.addSubview(main_view)
     }
     
     func setupSelectorHeaderLabel() {

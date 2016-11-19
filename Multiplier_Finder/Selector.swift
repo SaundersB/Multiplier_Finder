@@ -19,7 +19,6 @@ class Selector: UIViewController
     
     var main_view: UIView!
     
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         print("Loading view in Selector")
@@ -39,7 +38,7 @@ class Selector: UIViewController
 
         // Create a layout.
         let layout = UICollectionViewFlowLayout()
-        main_view = UIView(frame: CGRect(x: 0, y: 46, width: view.frame.width, height: view.frame.height))
+        main_view = UIView(frame: CGRect(x: 0, y: self.view.frame.height / 4, width: view.frame.width, height: view.frame.height))
         
         // Add spacing around each cell.
         layout.minimumLineSpacing = 10
@@ -85,8 +84,6 @@ class Selector: UIViewController
         // Present the Practice view controller to the user.
         self.present(secondViewController, animated: true, completion: nil)
     }
-
-    
 }
 
 

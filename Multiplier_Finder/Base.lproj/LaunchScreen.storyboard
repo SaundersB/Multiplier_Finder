@@ -6,6 +6,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11524"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -26,12 +27,32 @@
                                 <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <color key="tintColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </imageView>
+                            <label verifyAmbiguity="off" opaque="NO" userInteractionEnabled="NO" contentMode="bottom" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="  Copyright © 2016 SaundersB All rights reserved." textAlignment="center" lineBreakMode="tailTruncation" minimumFontSize="4" translatesAutoresizingMaskIntoConstraints="NO" id="BDJ-c0-XRZ">
+                                <rect key="frame" x="86" y="638" width="202" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="8"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <imageView verifyAmbiguity="off" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" image="multiplierfinderlogo" translatesAutoresizingMaskIntoConstraints="NO" id="5jl-Bf-zLF">
+                                <rect key="frame" x="67" y="269" width="240" height="128"/>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
+                            <constraint firstItem="xb3-aO-Qok" firstAttribute="top" secondItem="r4I-ny-nsa" secondAttribute="bottom" id="5Pf-NM-3Ac"/>
+                            <constraint firstItem="5jl-Bf-zLF" firstAttribute="leading" secondItem="Ze5-6b-2t3" secondAttribute="leadingMargin" constant="50" id="8n3-yf-a7S"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="BDJ-c0-XRZ" secondAttribute="trailing" id="DcC-3i-6eb"/>
+                            <constraint firstAttribute="trailing" secondItem="r4I-ny-nsa" secondAttribute="trailing" id="Lzm-jt-Big"/>
                             <constraint firstItem="r4I-ny-nsa" firstAttribute="top" secondItem="Ze5-6b-2t3" secondAttribute="top" id="MLd-Ff-u5x"/>
+                            <constraint firstItem="xb3-aO-Qok" firstAttribute="top" secondItem="BDJ-c0-XRZ" secondAttribute="bottom" constant="25" id="Qba-fq-U4p"/>
+                            <constraint firstItem="r4I-ny-nsa" firstAttribute="leading" secondItem="Ze5-6b-2t3" secondAttribute="leading" id="QsL-kX-SSL"/>
                             <constraint firstAttribute="trailing" secondItem="r4I-ny-nsa" secondAttribute="trailing" id="QyK-K8-AJQ"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="5jl-Bf-zLF" secondAttribute="trailing" constant="50" id="WxT-8j-sSE"/>
+                            <constraint firstItem="5jl-Bf-zLF" firstAttribute="top" secondItem="Llm-lL-Icb" secondAttribute="bottom" constant="250" id="XtI-eq-2rU"/>
+                            <constraint firstItem="r4I-ny-nsa" firstAttribute="top" secondItem="Ze5-6b-2t3" secondAttribute="top" id="cLl-Qr-nRm"/>
+                            <constraint firstItem="BDJ-c0-XRZ" firstAttribute="leading" secondItem="Ze5-6b-2t3" secondAttribute="leadingMargin" id="cjm-dw-wwb"/>
                             <constraint firstItem="r4I-ny-nsa" firstAttribute="leading" secondItem="Ze5-6b-2t3" secondAttribute="leading" id="d4n-mv-ypS"/>
+                            <constraint firstItem="BDJ-c0-XRZ" firstAttribute="top" secondItem="5jl-Bf-zLF" secondAttribute="bottom" constant="250" id="o9A-8y-paU"/>
                             <constraint firstItem="xb3-aO-Qok" firstAttribute="top" secondItem="r4I-ny-nsa" secondAttribute="bottom" id="zhA-fQ-bCd"/>
                         </constraints>
                     </view>
@@ -41,4 +62,7 @@
             <point key="canvasLocation" x="52" y="374.66266866566718"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="multiplierfinderlogo" width="240" height="131"/>
+    </resources>
 </document>

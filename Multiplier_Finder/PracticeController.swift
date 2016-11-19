@@ -22,8 +22,12 @@ class PracticeController: UIViewController {
     var right_arrow_view: UIImageView!
     var left_arrow_view: UIImageView!
     var main_view: UIView!
-    var arrow_height = CGFloat(114)
-    var arrow_width = CGFloat(150)
+    var side_arrow_height = CGFloat(85.5)
+    var side_arrow_width = CGFloat(112.5)
+    var down_arrow_height = CGFloat(75)
+    var down_arrow_width = CGFloat(57)
+    var right_arrow_label: UILabel!
+    var left_arrow_label: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -135,17 +139,17 @@ class PracticeController: UIViewController {
     }
     
     func setupDownArrow() {
-        down_arrow_view = UIImageView(frame: CGRect(x: self.view.bounds.width * 0.45, y: self.view.bounds.height - 100, width: 50, height: 100))
+        down_arrow_view = UIImageView(frame: CGRect(x: self.view.bounds.width/2 - down_arrow_width , y: self.view.bounds.height - down_arrow_height, width: down_arrow_width, height: down_arrow_height))
         let down_arrow = UIImage(named: "arrow_down")
         down_arrow_view.image = down_arrow
         view.addSubview(down_arrow_view)
     }
     
     func setupDownArrowHeader() {
-        let label_size = CGFloat(25)
-        let label_rectangle = CGRect(x: 0, y: self.view.frame.height - (down_arrow_view.frame.height + 30), width: view.frame.size.width, height: label_size)
+        let label_size = CGFloat(35)
+        let label_rectangle = CGRect(x: 0, y: self.view.frame.height - (down_arrow_view.frame.height + label_size + 5), width: view.frame.size.width, height: label_size)
         let arrow_label = UILabel(frame: label_rectangle)
-        arrow_label.font = UIFont(name: "American Typewriter", size: 25)
+        arrow_label.font = UIFont(name: "American Typewriter", size: 15)
         arrow_label.text = "SWIPE DOWN TO SELECT ANOTHER SET"
         arrow_label.textColor = .white
         arrow_label.layer.borderWidth = 3
@@ -160,23 +164,23 @@ class PracticeController: UIViewController {
     }
     
     func setupSideArrows(){
-        right_arrow_view = UIImageView(frame: CGRect(x: self.view.bounds.width - arrow_width, y: self.view.bounds.height/2 - arrow_height, width: arrow_width, height: arrow_height))
+        right_arrow_view = UIImageView(frame: CGRect(x: self.view.bounds.width - side_arrow_width, y: self.view.bounds.height/2 - side_arrow_height, width: side_arrow_width, height: side_arrow_height))
         let right_arrow = UIImage(named: "arrow_right")
         right_arrow_view.image = right_arrow
         view.addSubview(right_arrow_view)
         
-        left_arrow_view = UIImageView(frame: CGRect(x: 0, y: self.view.bounds.height/2 - arrow_height, width: arrow_width, height: arrow_height))
+        left_arrow_view = UIImageView(frame: CGRect(x: 0, y: self.view.bounds.height/2 - side_arrow_height, width: side_arrow_width, height: side_arrow_height))
         let left_arrow = UIImage(named: "arrow_left")
         left_arrow_view.image = left_arrow
         view.addSubview(left_arrow_view)
     }
     
     func setupSideArrowHeaders() {
-        let label_size = CGFloat(25)
-        let right_label_rectangle = CGRect(x: self.view.frame.width - right_arrow_view.frame.size.width, y: self.view.frame.height/2 - (arrow_height + label_size), width: right_arrow_view.frame.size.width, height: label_size)
-        let left_label_rectangle = CGRect(x: 0, y: self.view.frame.height/2 - (arrow_height + label_size), width: left_arrow_view.frame.size.width, height: label_size)
+        let label_size = CGFloat(35)
+        let right_label_rectangle = CGRect(x: self.view.frame.width - right_arrow_view.frame.size.width, y: self.view.frame.height/2 - (side_arrow_height + label_size), width: right_arrow_view.frame.size.width, height: label_size)
+        let left_label_rectangle = CGRect(x: 0, y: self.view.frame.height/2 - (side_arrow_height + label_size), width: left_arrow_view.frame.size.width, height: label_size)
 
-        let right_arrow_label = UILabel(frame: right_label_rectangle)
+        right_arrow_label = UILabel(frame: right_label_rectangle)
         right_arrow_label.font = UIFont(name: "American Typewriter", size: 20)
         right_arrow_label.text = "SWIPE RIGHT"
         right_arrow_label.textColor = .white
@@ -190,7 +194,7 @@ class PracticeController: UIViewController {
         right_arrow_label.textAlignment = .center
         view.addSubview(right_arrow_label)
         
-        let left_arrow_label = UILabel(frame: left_label_rectangle)
+        left_arrow_label = UILabel(frame: left_label_rectangle)
         left_arrow_label.font = UIFont(name: "American Typewriter", size: 20)
         left_arrow_label.text = "SWIPE LEFT"
         left_arrow_label.textColor = .white
@@ -208,12 +212,15 @@ class PracticeController: UIViewController {
     func hideSideArrows() {
         right_arrow_view.isHidden = true
         left_arrow_view.isHidden = true
+        right_arrow_label.isHidden = true
+        left_arrow_label.isHidden = true
     }
     
     
     func respondToSwipeGesture(gesture: UISwipeGestureRecognizer) {
         print("RespondetoSwipeGesture")
         print(gesture.direction)
+        hideSideArrows()
         
         if let swipeGesture = gesture as? UISwipeGestureRecognizer {
             switch swipeGesture.direction {

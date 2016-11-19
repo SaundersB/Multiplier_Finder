@@ -19,8 +19,11 @@ class PracticeController: UIViewController {
     var next_factor: Int!
     var starting_factor: Int!
     var down_arrow_view: UIImageView!
-    
+    var right_arrow_view: UIImageView!
+    var left_arrow_view: UIImageView!
     var main_view: UIView!
+    var arrow_height = CGFloat(114)
+    var arrow_width = CGFloat(150)
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -38,9 +41,14 @@ class PracticeController: UIViewController {
 
         setupFlashCardText()
         
-        setupArrow()
+        setupDownArrow()
         
-        setupArrowHeader()
+        setupDownArrowHeader()
+        
+        
+        setupSideArrows()
+        
+        setupSideArrowHeaders()
     }
     
     func setupView() {
@@ -54,6 +62,7 @@ class PracticeController: UIViewController {
         let uicolor = UIColor(patternImage: background_image!)
         view.backgroundColor = uicolor
     }
+    
     
     func setupPracticeHeaderLabel() {
         let label_rectangle = CGRect(x: 0, y: self.view.frame.height * 0.05, width: view.frame.width, height: 60)
@@ -125,14 +134,14 @@ class PracticeController: UIViewController {
         view.addSubview(cardView)
     }
     
-    func setupArrow() {
+    func setupDownArrow() {
         down_arrow_view = UIImageView(frame: CGRect(x: self.view.bounds.width * 0.45, y: self.view.bounds.height - 100, width: 50, height: 100))
         let down_arrow = UIImage(named: "arrow_down")
         down_arrow_view.image = down_arrow
         view.addSubview(down_arrow_view)
     }
     
-    func setupArrowHeader() {
+    func setupDownArrowHeader() {
         let label_size = CGFloat(25)
         let label_rectangle = CGRect(x: 0, y: self.view.frame.height - (down_arrow_view.frame.height + 30), width: view.frame.size.width, height: label_size)
         let arrow_label = UILabel(frame: label_rectangle)
@@ -148,6 +157,22 @@ class PracticeController: UIViewController {
         arrow_label.numberOfLines = 1
         arrow_label.textAlignment = .center
         view.addSubview(arrow_label)
+    }
+    
+    func setupSideArrows(){
+        right_arrow_view = UIImageView(frame: CGRect(x: self.view.bounds.width - arrow_width, y: self.view.bounds.height/2 - arrow_height, width: arrow_width, height: arrow_height))
+        let right_arrow = UIImage(named: "arrow_right")
+        right_arrow_view.image = right_arrow
+        view.addSubview(right_arrow_view)
+        
+        left_arrow_view = UIImageView(frame: CGRect(x: 0, y: self.view.bounds.height/2 - arrow_height, width: arrow_width, height: arrow_height))
+        let left_arrow = UIImage(named: "arrow_left")
+        left_arrow_view.image = left_arrow
+        view.addSubview(left_arrow_view)
+    }
+    
+    func setupSideArrowHeaders() {
+        
     }
     
     
@@ -244,7 +269,7 @@ class PracticeController: UIViewController {
     }
     
     func swipedUp() {
-        
+        // Waiting for a later implementation.
     }
     
     

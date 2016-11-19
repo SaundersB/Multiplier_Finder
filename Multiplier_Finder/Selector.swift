@@ -19,6 +19,7 @@ class Selector: UIViewController
     
     var main_view: UIView!
     var activity_label: UILabel!
+    var notification_height: CGFloat!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -34,20 +35,23 @@ class Selector: UIViewController
     }
     
     func setupView() {
-        // Creates a white view
-        main_view = UIView(frame: CGRect(x: 0, y: 0, width: view.frame.width, height: view.frame.height - (view.frame.height * 0.98)))
+        notification_height = UIApplication.shared.statusBarFrame.height
+        main_view = UIView(frame: CGRect(x: 0, y: 0, width: view.frame.width, height: notification_height))
         main_view.backgroundColor = .white
         view.addSubview(main_view)
     }
     
+    
     func setupSelectorHeaderLabel() {
-        let label_rectangle = CGRect(x: 0, y: self.view.frame.height * 0.10, width: view.frame.width, height: 60)
-        activity_label = UILabel(frame: label_rectangle)
-        activity_label.font = UIFont(name: "American Typewriter", size: 60)
+        let label_position = self.notification_height + 10
+        let label_height = CGFloat(40)
+        let label_rectangle = CGRect(x: 0, y: label_position, width: view.frame.width, height: label_height)
+        let activity_label = UILabel(frame: label_rectangle)
+        activity_label.font = UIFont(name: "American Typewriter", size: label_height)
         activity_label.text = "PICK A MULTIPLICATION SET"
         activity_label.textColor = .white
-        activity_label.layer.borderWidth = 3
-        activity_label.layer.cornerRadius = 10.0
+        activity_label.layer.borderWidth = 2
+        activity_label.layer.cornerRadius = 5.0
         activity_label.layer.masksToBounds = true
         activity_label.layer.borderColor = UIColor.white.cgColor
         activity_label.adjustsFontSizeToFitWidth = true

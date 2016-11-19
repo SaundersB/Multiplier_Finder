@@ -31,6 +31,7 @@ class PracticeController: UIViewController {
     let label_size = CGFloat(35)
     var hasUserSwipedRight = false
     var hasUserSwipedLeft = false
+    var notification_height: CGFloat!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -58,7 +59,8 @@ class PracticeController: UIViewController {
     }
     
     func setupView() {
-        main_view = UIView(frame: CGRect(x: 0, y: 0, width: view.frame.width, height: view.frame.height - (view.frame.height * 0.98)))
+        notification_height = UIApplication.shared.statusBarFrame.height
+        main_view = UIView(frame: CGRect(x: 0, y: 0, width: view.frame.width, height: notification_height))
         main_view.backgroundColor = .white
         view.addSubview(main_view)
     }
@@ -71,13 +73,15 @@ class PracticeController: UIViewController {
     
     
     func setupPracticeHeaderLabel() {
-        let label_rectangle = CGRect(x: 0, y: self.view.frame.height * 0.05, width: view.frame.width, height: 60)
+        let label_position = self.notification_height + 10
+        let label_height = CGFloat(40)
+        let label_rectangle = CGRect(x: 0, y: label_position, width: view.frame.width, height: label_height)
         let practice_label = UILabel(frame: label_rectangle)
-        practice_label.font = UIFont(name: "American Typewriter", size: 60)
+        practice_label.font = UIFont(name: "American Typewriter", size: label_height)
         practice_label.text = "MULTIPLICATION PRACTICE"
         practice_label.textColor = .white
-        practice_label.layer.borderWidth = 3
-        practice_label.layer.cornerRadius = 10.0
+        practice_label.layer.borderWidth = 2
+        practice_label.layer.cornerRadius = 5.0
         practice_label.layer.masksToBounds = true
         practice_label.layer.borderColor = UIColor.white.cgColor
         practice_label.adjustsFontSizeToFitWidth = true
@@ -102,7 +106,7 @@ class PracticeController: UIViewController {
         
         front.layer.cornerRadius = 10.0
         back.layer.cornerRadius = 10.0
-
+        
     }
     
     func setupGestureRecognition() {
@@ -161,7 +165,7 @@ class PracticeController: UIViewController {
         arrow_label.layer.borderColor = UIColor.white.cgColor
         arrow_label.adjustsFontSizeToFitWidth = true
         arrow_label.minimumScaleFactor = 0.2
-        arrow_label.numberOfLines = 1
+        arrow_label.numberOfLines = 2
         arrow_label.textAlignment = .center
         arrow_label.center.x = self.view.center.x
         view.addSubview(arrow_label)
@@ -184,7 +188,7 @@ class PracticeController: UIViewController {
     func setupRightSideArrowHeader() {
         let right_label_rectangle = CGRect(x: self.view.frame.width - right_arrow_view.frame.size.width, y: self.view.frame.height/2 - (side_arrow_height + label_size), width: right_arrow_view.frame.size.width, height: label_size)
         right_arrow_label = UILabel(frame: right_label_rectangle)
-        right_arrow_label.font = UIFont(name: "American Typewriter", size: 20)
+        right_arrow_label.font = UIFont(name: "American Typewriter", size: 15)
         right_arrow_label.text = "SWIPE RIGHT"
         right_arrow_label.textColor = .white
         right_arrow_label.layer.borderWidth = 3
@@ -202,7 +206,7 @@ class PracticeController: UIViewController {
     func setupLeftSideArrowHeader() {
         let left_label_rectangle = CGRect(x: 0, y: self.view.frame.height/2 - (side_arrow_height + label_size), width: left_arrow_view.frame.size.width, height: label_size)
         left_arrow_label = UILabel(frame: left_label_rectangle)
-        left_arrow_label.font = UIFont(name: "American Typewriter", size: 20)
+        left_arrow_label.font = UIFont(name: "American Typewriter", size: 15)
         left_arrow_label.text = "SWIPE LEFT"
         left_arrow_label.textColor = .white
         left_arrow_label.layer.borderWidth = 3

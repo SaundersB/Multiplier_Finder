@@ -28,7 +28,10 @@ class PracticeController: UIViewController {
     var down_arrow_width = CGFloat(57)
     var right_arrow_label: UILabel!
     var left_arrow_label: UILabel!
-    
+    let label_size = CGFloat(35)
+    var hasUserSwipedRight = false
+    var hasUserSwipedLeft = false
+
     override func viewDidLoad() {
         super.viewDidLoad()
         self.showingBack = false
@@ -49,10 +52,9 @@ class PracticeController: UIViewController {
         
         setupDownArrowHeader()
         
+        setupLeftSideArrow()
         
-        setupSideArrows()
-        
-        setupSideArrowHeaders()
+        setupLeftSideArrowHeader()
     }
     
     func setupView() {
@@ -163,23 +165,22 @@ class PracticeController: UIViewController {
         view.addSubview(arrow_label)
     }
     
-    func setupSideArrows(){
+    func setupRightSideArrow() {
         right_arrow_view = UIImageView(frame: CGRect(x: self.view.bounds.width - side_arrow_width, y: self.view.bounds.height/2 - side_arrow_height, width: side_arrow_width, height: side_arrow_height))
         let right_arrow = UIImage(named: "arrow_right")
         right_arrow_view.image = right_arrow
         view.addSubview(right_arrow_view)
-        
+    }
+    
+    func setupLeftSideArrow() {
         left_arrow_view = UIImageView(frame: CGRect(x: 0, y: self.view.bounds.height/2 - side_arrow_height, width: side_arrow_width, height: side_arrow_height))
         let left_arrow = UIImage(named: "arrow_left")
         left_arrow_view.image = left_arrow
         view.addSubview(left_arrow_view)
     }
     
-    func setupSideArrowHeaders() {
-        let label_size = CGFloat(35)
+    func setupRightSideArrowHeader() {
         let right_label_rectangle = CGRect(x: self.view.frame.width - right_arrow_view.frame.size.width, y: self.view.frame.height/2 - (side_arrow_height + label_size), width: right_arrow_view.frame.size.width, height: label_size)
-        let left_label_rectangle = CGRect(x: 0, y: self.view.frame.height/2 - (side_arrow_height + label_size), width: left_arrow_view.frame.size.width, height: label_size)
-
         right_arrow_label = UILabel(frame: right_label_rectangle)
         right_arrow_label.font = UIFont(name: "American Typewriter", size: 20)
         right_arrow_label.text = "SWIPE RIGHT"
@@ -193,7 +194,11 @@ class PracticeController: UIViewController {
         right_arrow_label.numberOfLines = 1
         right_arrow_label.textAlignment = .center
         view.addSubview(right_arrow_label)
-        
+
+    }
+    
+    func setupLeftSideArrowHeader() {
+        let left_label_rectangle = CGRect(x: 0, y: self.view.frame.height/2 - (side_arrow_height + label_size), width: left_arrow_view.frame.size.width, height: label_size)
         left_arrow_label = UILabel(frame: left_label_rectangle)
         left_arrow_label.font = UIFont(name: "American Typewriter", size: 20)
         left_arrow_label.text = "SWIPE LEFT"
@@ -207,32 +212,46 @@ class PracticeController: UIViewController {
         left_arrow_label.numberOfLines = 1
         left_arrow_label.textAlignment = .center
         view.addSubview(left_arrow_label)
+
     }
     
-    func hideSideArrows() {
+    
+    func hideRightSideArrow() {
+        // Hide the instructions right side arrows.
         right_arrow_view.isHidden = true
-        left_arrow_view.isHidden = true
         right_arrow_label.isHidden = true
+        hasUserSwipedRight = true
+    }
+    
+    func hideLeftSideArrow() {
+        left_arrow_view.isHidden = true
         left_arrow_label.isHidden = true
+        hasUserSwipedLeft = true
     }
     
     
     func respondToSwipeGesture(gesture: UISwipeGestureRecognizer) {
         print("RespondetoSwipeGesture")
         print(gesture.direction)
-        hideSideArrows()
         
         if let swipeGesture = gesture as? UISwipeGestureRecognizer {
             switch swipeGesture.direction {
             case UISwipeGestureRecognizerDirection.right:
                 print("Swiped right")
                 flip_card_to_the_right()
+                hideRightSideArrow()
             case UISwipeGestureRecognizerDirection.down:
                 print("Swiped down")
                 dismiss(animated: true, completion: nil)
             case UISwipeGestureRecognizerDirection.left:
                 print("Swiped left")
                 flip_card_to_the_left()
+                hideLeftSideArrow()
+                
+                if(!hasUserSwipedRight) {
+                    setupRightSideArrow()
+                    setupRightSideArrowHeader()
+                }
             case UISwipeGestureRecognizerDirection.up:
                 print("Swiped up")
             default:
@@ -326,8 +345,8 @@ class PracticeController: UIViewController {
     }
     
     func superimposeText(card_information: String) {
-        print("Superimposing Text onto UIView in Practice Controller")
         // Initialize the rectangle that the text view will be placed in.
+        // Place the text over the flash card.
         self.textView = UILabel(frame: CGRect(x: back.frame.width/2, y: back.frame.height/2, width: back.frame.width, height: back.frame.height))
         self.textView.text = card_information
         self.textView.numberOfLines = 1

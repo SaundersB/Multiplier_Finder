@@ -172,7 +172,42 @@ class PracticeController: UIViewController {
     }
     
     func setupSideArrowHeaders() {
+        let label_size = CGFloat(25)
+        let right_label_rectangle = CGRect(x: self.view.frame.width - right_arrow_view.frame.size.width, y: self.view.frame.height/2 - (arrow_height + label_size), width: right_arrow_view.frame.size.width, height: label_size)
+        let left_label_rectangle = CGRect(x: 0, y: self.view.frame.height/2 - (arrow_height + label_size), width: left_arrow_view.frame.size.width, height: label_size)
+
+        let right_arrow_label = UILabel(frame: right_label_rectangle)
+        right_arrow_label.font = UIFont(name: "American Typewriter", size: 20)
+        right_arrow_label.text = "SWIPE RIGHT"
+        right_arrow_label.textColor = .white
+        right_arrow_label.layer.borderWidth = 3
+        right_arrow_label.layer.cornerRadius = 10.0
+        right_arrow_label.layer.masksToBounds = true
+        right_arrow_label.layer.borderColor = UIColor.white.cgColor
+        right_arrow_label.adjustsFontSizeToFitWidth = true
+        right_arrow_label.minimumScaleFactor = 0.2
+        right_arrow_label.numberOfLines = 1
+        right_arrow_label.textAlignment = .center
+        view.addSubview(right_arrow_label)
         
+        let left_arrow_label = UILabel(frame: left_label_rectangle)
+        left_arrow_label.font = UIFont(name: "American Typewriter", size: 20)
+        left_arrow_label.text = "SWIPE LEFT"
+        left_arrow_label.textColor = .white
+        left_arrow_label.layer.borderWidth = 3
+        left_arrow_label.layer.cornerRadius = 10.0
+        left_arrow_label.layer.masksToBounds = true
+        left_arrow_label.layer.borderColor = UIColor.white.cgColor
+        left_arrow_label.adjustsFontSizeToFitWidth = true
+        left_arrow_label.minimumScaleFactor = 0.2
+        left_arrow_label.numberOfLines = 1
+        left_arrow_label.textAlignment = .center
+        view.addSubview(left_arrow_label)
+    }
+    
+    func hideSideArrows() {
+        right_arrow_view.isHidden = true
+        left_arrow_view.isHidden = true
     }
     
     
